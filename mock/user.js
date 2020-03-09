@@ -50,6 +50,7 @@ const tokens = {
   
     // get user info
     {
+      // eslint-disable-next-line no-useless-escape
       url: '/vanilla/user/info\.*',
       type: 'get',
       response: config => {
@@ -75,7 +76,7 @@ const tokens = {
     {
       url: '/vanilla/user/logout',
       type: 'post',
-      response: _ => {
+      response: () => {
         return {
           code: 20000,
           data: 'success'

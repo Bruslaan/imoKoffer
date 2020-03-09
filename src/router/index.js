@@ -7,29 +7,16 @@ import Login from '../views/LoginPage.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('../views/Home'),
-      meta: { title: 'Dashboard', icon: 'mdi-home-city' }
-    },
-    ]
-  },
 
   {
-    path: '/test',
+    path: '/',
     component: Layout,
     children: [
       {
         path: 'index',
-        name: 'Form',
-        component: () => import('../views/test'),
-        meta: { title: 'Form', icon: 'mdi-home-city' }
+        name: 'Landing',
+        component: () => import('../views/LandingPage'),
+        meta: { title: 'Landing', icon: 'mdi-calendar-account' }
       }
     ]
   },

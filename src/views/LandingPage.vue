@@ -1,5 +1,7 @@
 <template>
-  <div><H1>Dashboard</H1></div>
+  <div>
+      Landing Page
+  </div>
 </template>
 
 <script>
