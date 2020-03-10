@@ -1,18 +1,16 @@
 <template>
   <v-app>
-    <v-app-bar app absolute color="white" elevate-on-scroll></v-app-bar>
-    <!-- Sizes your content based upon application components -->
-    <v-content>
-      <!-- Provides the application the proper gutter -->
-      <v-container fluid>
-        <!-- If using vue-router -->
-        <router-view :key="key" />
-      </v-container>
-    </v-content>
+    <v-app-bar app fixed color="white" elevate-on-scroll>
+      <v-toolbar-title @click="$router.push({name:'home'})">ImoKoffer</v-toolbar-title>
+    </v-app-bar>
 
-    <v-footer app>
-      <!-- -->
-    </v-footer>
+    <!-- Sizes your content based upon application components -->
+    <v-content app>
+      <!-- Provides the application the proper gutter -->
+
+      <!-- If using vue-router -->
+      <router-view :key="key" />
+    </v-content>
   </v-app>
 </template>
 

@@ -4,7 +4,7 @@ import { getToken } from './utils/auth'
 import store from './store'
 
 
-const whiteList = ['/login', '/'] // no redirect whitelist
+const whiteList = ['/login', '/','/landing','/mietvertrag'] // no redirect whitelist
 
 router.beforeEach(async (to, from, next) => {
 

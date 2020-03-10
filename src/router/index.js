@@ -10,16 +10,24 @@ const routes = [
 
   {
     path: '/',
+    name: 'home',
     component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Landing',
-        component: () => import('../views/LandingPage'),
-        meta: { title: 'Landing', icon: 'mdi-calendar-account' }
-      }
+    redirect: '/landing',
+    children: [{
+      path: 'landing',
+      name: 'Landing',
+      component: () => import('../views/LandingPage'),
+      meta: { title: 'Landing', icon: 'mdi-home-city' }
+    },
+    {
+      path: 'mietvertrag',
+      name: 'mietvertrag',
+      component: () => import('../views/Generator'),
+      meta: { title: 'Landing', icon: 'mdi-home-city' }
+    },
     ]
   },
+ 
   {
     path: '/login',
     name: 'login',
