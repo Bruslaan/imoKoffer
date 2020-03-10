@@ -29,8 +29,6 @@
             </div>
           </v-card>
         </transition>
-
-
       </div>
       <div class="d-flex justify-center align-center" style="height:90vh" v-if="menu==3">
         <h1>Super geschafft!!</h1>
@@ -39,7 +37,9 @@
 
     <div class="d-flex justify-center align-center bottom_nav">
       <button @click="prev" class="prev">Zurück</button>
-      <v-progress-circular v-if="menu>=3" class="nmt-5" :size="50" :value="progress"><v-icon class="green--text">mdi-check</v-icon></v-progress-circular>
+      <v-progress-circular v-if="menu>=3" class="nmt-5" :size="50" :value="progress">
+        <v-icon class="green--text">mdi-check</v-icon>
+      </v-progress-circular>
       <v-progress-circular v-else class="nmt-5" :size="50" :value="progress">{{ progressDiscret }}</v-progress-circular>
       <button v-if="menu==3" @click="generatePDF" class="next">Gen</button>
       <button v-else @click="next" class="next">Weiter</button>
@@ -146,8 +146,35 @@ export default {
     }
   },
   methods: {
-    generatePDF(){
-    
+    async generatePDF() {
+      console.log(this.model)
+      fetch("http://192.168.0.121:8000/docx/pdf", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({test: this.model})
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          if (data.file) {
+            console.log(data.file, data.status);
+            let blob = new Blob(
+              [new Uint8Array([...atob(data.file)].map(c => c.charCodeAt(0)))],
+              { type: "application/octet-stream" }
+            );
+            let dl = document.createElement("a");
+            dl.download = `hallo.pdf`;
+            dl.href = URL.createObjectURL(blob);
+            document.body.appendChild(dl);
+            dl.click();
+            dl.remove();
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
     },
     next() {
       this.isNext = true;
